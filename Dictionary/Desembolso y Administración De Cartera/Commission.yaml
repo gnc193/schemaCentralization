@@ -1,0 +1,18 @@
+commissions:
+        type: object
+        properties:
+          type:
+            type: string
+            maxLength: 3
+            example: 'PYM'
+            description: Código del tipo de comisión asociada al crédito.
+          amount:
+            type: number
+            maxLength: 15
+            example: 800000
+            description: Valor de la comisión asociada al crédito.            
+          taxes:
+            type: number
+            maxLength: 15
+            example: 152000
+            description: Impuesto (IVA) que aplica para el tipo de comisión.   

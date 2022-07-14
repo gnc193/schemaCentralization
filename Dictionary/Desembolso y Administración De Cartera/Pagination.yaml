@@ -1,0 +1,26 @@
+pagination:
+    type: object
+    properties:
+      pageSize:
+        type: number
+        maxLength: 3
+        example: 10
+        description: Cantidad de registros a ser retornados por página.
+      pageNumber:
+        type: number
+        maxLength: 3
+        example: 1
+        description: Número de página a consultar.
+      totalRecords:
+        type: number
+        maxLength: 8
+        example: 10
+        description: Total de registros para la consulta.
+      additionalRecords:
+        type: string
+        maxLength: 1
+        example: 'N'
+        description: Indicador de registros adicionales en siguientes páginas.
+        enum:
+        - 'N'
+        - 'Y'

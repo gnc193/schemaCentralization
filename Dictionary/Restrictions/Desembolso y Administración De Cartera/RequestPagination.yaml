@@ -1,0 +1,8 @@
+requestPagination:
+    type: object
+    properties:
+      pageSize:
+        description: "In-Restriction desc."
+        $ref: "../../Desembolso y Administración De Cartera/Pagination.yaml#/pagination/properties/pageSize"
+      pageNumber:
+        $ref: "../../Desembolso y Administración De Cartera/Pagination.yaml#/pagination/properties/pageNumber"

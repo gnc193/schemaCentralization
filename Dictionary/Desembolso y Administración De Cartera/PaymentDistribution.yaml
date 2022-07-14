@@ -1,0 +1,13 @@
+paymentsDistribution:  
+        type: object
+        properties:
+          concept:
+            type: string
+            maxLength: 2
+            example: '01'
+            description: Concepto  para determinar el tipo de cuota( indica si la cuota incluye intereses seguro, capital, gastos.comisiones, retenciones, entre otros)
+          connector:
+            type: string
+            maxLength: 1
+            example: '&'
+            description: Si el conector entre conceptos es +, quiere decir que al valor de la cuota le suma cuantos conceptos se le adicionen, pero con la particularidad que se puede ver cuanto es el valor individual por concepto, mientras que el conector &, lo que hace es que agrupa los conceptos y dentro del valor de la cuota regular suma dichos conceptos separados con &.        

@@ -1,0 +1,43 @@
+  transaction:
+    type: object
+    required:
+    - id
+    - type
+    - code
+    - description
+    - requestDate
+    - effectiveDate
+    - relatedBillDate
+    - amount
+    - currency
+    - originBranch
+    - origin
+    properties:
+      id:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/id"
+      status:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/status"
+      type:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/type"
+      code:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/code"
+      description:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/description"
+      requestDate:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/requestDate"
+      effectiveDate:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/effectiveDate"
+      relatedBillDate:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/relatedBillDate"
+      amount:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/amount"
+      currency:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/currency"
+      localCurrencyAmount:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/localCurrencyAmount"
+      localCurrencyExchangeRate:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/localCurrencyExchangeRate"
+      originBranch:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/originBranch"
+      origin:
+        $ref: "../../Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/origin"

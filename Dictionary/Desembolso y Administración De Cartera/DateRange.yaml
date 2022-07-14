@@ -1,0 +1,15 @@
+dateRange:
+    type: object
+    properties:
+      startDate:
+        type: string
+        format: date
+        maxLength: 10
+        example: '2021-01-01'
+        description: Fecha inicial del periodo de tiempo a consultar.
+      endDate:
+        type: string
+        format: date
+        maxLength: 10
+        example: '2021-01-30'
+        description: Fecha final del periodo de tiempo a consultar.

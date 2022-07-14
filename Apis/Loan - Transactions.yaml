@@ -1,0 +1,1003 @@
+swagger: '2.0'
+info:
+  title: Loan - Transactions
+  version: 1.0.0 
+  description: 'Esta API cuenta con capacidades que permiten la consulta general de transacciones realizadas a un crédito desembolsado y la consulta detallada de una transacción específica.'
+  x-ibm-name: loan-transactions
+basePath: /v1/operations/product-specific/loans/loan/transactions
+paths:
+  /loanTransactions: 
+    post: 
+      summary: 'Permite consultar detalles generales de transacciones realizadas a un préstamo en un periodo de tiempo.'
+      description: 'Permite consultar datos generales de transacciones que haya presentado un préstamo dentro un período de tiempo, pudiendo refinar la búsqueda por medio de parámetros como tipo, estado y/u origen de la transacción.' 
+      parameters:
+        - name: "accept"
+          in: "header"
+          required: false
+          type: "string"   
+          description: "application/vnd.bancolombia.v4+json, el cual representa el formato de mensajería."
+          
+        - name: "x-ibm-client-id"
+          in: "header"
+          required: false
+          type: "string"   
+          description: "Id único de la aplicación consumidora"
+          
+        - name: "x-ibm-client-secret"
+          in: "header"
+          required: false
+          type: "string"
+          description: "Secreto del cliente."
+          
+        - name: "message-id"
+          in: "header"
+          required: true
+          type: "string"
+          description: "Identificador de transacción. Se recomienda usar un UUID para el valor de este campo Ejemplo: c4e6bd04-5149-11e7-b114-b2f933d5fe66."
+        
+        - name: requestBody
+          in: body 
+          required: true
+          schema:
+            $ref: '#/definitions/loanTransactionsRequest'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/loanTransactionsResponse'
+          description: Respuesta exitosa
+          x-ibm-languages:
+            description:
+              en: Successful response.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajeria de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Limite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlacion usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '400':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Error en la solicitud.
+          x-ibm-languages:
+            description:
+              en: Error in the request.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '401':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Credenciales incorrectas.
+          x-ibm-languages:
+            description:
+              en: Incorrect credentials.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '403':
+          schema:
+            $ref: '#/definitions/failure'
+          description: No tiene permisos para acceder al recurso.
+          x-ibm-languages:
+            description:
+              en: You do not have permissions to access the resource.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '404':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Recurso no encontrado.
+          x-ibm-languages:
+            description:
+              en: Resource not found.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '409':
+          schema:
+            $ref: '#/definitions/failure'
+          description: El estado del recurso presenta conflictos con los datos de la solicitud.
+          x-ibm-languages:
+            description:
+              en: Resource state has conflicts with data of the request.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '500':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Error interno del servidor.
+          x-ibm-languages:
+            description:
+              en: Internal server error.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '502':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Error en la respuesta del proveedor del servicio.
+          x-ibm-languages:
+            description:
+              en: Error in the service provider response.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '503':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Servicio no disponible.
+          x-ibm-languages:
+            description:
+              en: Service unavailable.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '504':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Tiempo de respuesta del proveedor del servicio excedido.
+          x-ibm-languages:
+            description:
+              en: Service provider response time exceeded.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo 
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+      security:
+      - clientSecret: []
+        clientId: []
+      tags:
+        - "Transactions"
+      operationId: loanTransactions
+  /transactionDetails: 
+    post: 
+      summary: 'Permite la consulta detallada de una transacción específica realizada sobre un préstamo desembolsado.'
+      description: 'Permite la consulta de los conceptos afectados a partir de una transacción específica realizada sobre un crédito desembolsado.' 
+      parameters:
+        - name: "accept"
+          in: "header"
+          required: false
+          type: "string"   
+          description: "application/vnd.bancolombia.v4+json, el cual representa el formato de mensajería."
+          
+        - name: "x-ibm-client-id"
+          in: "header"
+          required: false
+          type: "string"   
+          description: "Id único de la aplicación consumidora"
+          
+        - name: "x-ibm-client-secret"
+          in: "header"
+          required: false
+          type: "string"
+          description: "Secreto del cliente."
+          
+        - name: "message-id"
+          in: "header"
+          required: true
+          type: "string"
+          description: "Identificador de transacción. Se recomienda usar un UUID para el valor de este campo Ejemplo: c4e6bd04-5149-11e7-b114-b2f933d5fe66."
+        
+        - name: requestBody
+          in: body 
+          required: true
+          schema:
+            $ref: '#/definitions/transactionDetailsRequest'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/transactionDetailsResponse'
+          description: Respuesta exitosa
+          x-ibm-languages:
+            description:
+              en: Successful response.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajeria de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Limite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlacion usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '400':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Error en la solicitud.
+          x-ibm-languages:
+            description:
+              en: Error in the request.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '401':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Credenciales incorrectas.
+          x-ibm-languages:
+            description:
+              en: Incorrect credentials.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '403':
+          schema:
+            $ref: '#/definitions/failure'
+          description: No tiene permisos para acceder al recurso.
+          x-ibm-languages:
+            description:
+              en: You do not have permissions to access the resource.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '404':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Recurso no encontrado.
+          x-ibm-languages:
+            description:
+              en: Resource not found.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '409':
+          schema:
+            $ref: '#/definitions/failure'
+          description: El estado del recurso presenta conflictos con los datos de la solicitud.
+          x-ibm-languages:
+            description:
+              en: Resource state has conflicts with data of the request.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '500':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Error interno del servidor.
+          x-ibm-languages:
+            description:
+              en: Internal server error.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '502':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Error en la respuesta del proveedor del servicio.
+          x-ibm-languages:
+            description:
+              en: Error in the service provider response.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '503':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Servicio no disponible.
+          x-ibm-languages:
+            description:
+              en: Service unavailable.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+        '504':
+          schema:
+            $ref: '#/definitions/failure'
+          description: Tiempo de respuesta del proveedor del servicio excedido.
+          x-ibm-languages:
+            description:
+              en: Service provider response time exceeded.
+          headers:
+            Content-Type:
+              type: string
+              description: 'Formato de mensajería de la API. Ejemplo: application/vnd.bancolombia.v4+json.'
+              x-ibm-languages:
+                description:
+                  en: 'API message format. Example: application/vnd.bancolombia.v4+json.'
+            API-Version:
+              type: string
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              x-ibm-languages:
+                description:
+                  en: 'API Version. Example: 1.0.0.'
+            RateLimit-Limit:
+              type: number
+              description: Límite de solicitudes por intervalo de tiempo 
+              x-ibm-languages:
+                description:
+                  en: Resquest limit per time interval.
+            Message-Id:
+              type: string
+              description: 'Identificador del mensaje o de correlación usado para la trazabilidad de los llamados a las APIs.'
+              x-ibm-languages:
+                description:
+                  en: 'Message identifier or correlation identifier used for the traceability of the API calls.'
+      security:
+      - clientSecret: []
+        clientId: []
+      tags:
+        - "Transactions"
+      operationId: transactionDetails
+definitions:
+  #Estos elementos que en este caso componen el "elemento base" del request podría ser mejor no referenciarlos acá, sino que el elemento base se referencie en una restricción ?
+  requestPagination:
+    $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/RequestPagination.yaml#/requestPagination"
+  dateRange:    
+    $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/DateRange.yaml#/dateRange"      
+  loanId:
+    $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/Loan.yaml#/loanId"
+  loanTransactionsRequest: #Debería también crearse como restricción ? en caso tal, normalmente este objeto es muy particular según la entrada de cada método... aportaría valor referenciarlo ?
+    type: object
+    required:
+    - meta
+    - data
+    properties:
+      meta:
+        $ref: '#/definitions/meta'
+      data:
+        type: "object"
+        required:
+        - dateRange
+        - loan
+        properties:
+          requestPagination:
+            $ref: '#/definitions/requestPagination'
+          dateRange:
+            $ref: '#/definitions/dateRange'
+          loan: #Debería llamarse tal cual como la restricción ? 
+            $ref: '#/definitions/loanId'
+          code:
+            $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/code"
+          origin:
+            $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/origin"
+          status:
+            $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/status"
+
+  responsePagination:
+    $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/ResponsePagination.yaml#/responsePagination"
+  transaction:
+    $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/Transaction.yaml#/transaction"
+  loanTransactionsResponse: #Debería también crearse como restricción ? 
+    type: object
+    required:
+    - meta
+    - data
+    properties:
+      meta:
+        $ref: '#/definitions/meta'
+      data:
+        type: "object"
+        required:
+        - responsePagination
+        - transactions
+        properties:
+          responsePagination:
+            $ref: '#/definitions/responsePagination'
+          transactions:
+            type: array
+            items:
+              $ref: '#/definitions/transaction'
+  transactionId: #Debería llamarse tal cual la restricción ?
+    type: object
+    required:
+    - loan
+    - id
+    properties:
+      loan:
+        $ref: '#/definitions/loanId'
+      id:
+        $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/Transaction.yaml#/transaction/properties/id"
+  transactionDetailsRequest:
+    type: object
+    required:
+    - meta
+    - data
+    properties:
+      meta:
+        $ref: '#/definitions/meta'
+      data:
+        type: "object"
+        required:
+        - requestPagination
+        - transactionId
+        properties:
+          requestPagination:
+            $ref: '#/definitions/requestPagination'
+          transactionId:
+            $ref: '#/definitions/transactionId'
+  transactionConcept: #Se tenía "transactionDetails" pero es mejor llamarlo con el objeto
+    $ref: "../../Template_SchemaCentralization_API/Dictionary/Restrictions/Desembolso y Administración De Cartera/TransactionConcept.yaml#/transactionConcept"
+  transactionDetailsResponse:
+    type: object
+    required:
+    - meta
+    - data
+    properties:
+      meta:
+        $ref: '#/definitions/meta'
+      data:
+        type: "object"
+        required:
+        - responsePagination
+        - transactionDetails
+        properties:
+          responsePagination:
+            $ref: '#/definitions/responsePagination'
+          transactionDetails:
+            type: array
+            items:
+              $ref: '#/definitions/transactionConcept'
+  meta:
+    description: Datos de trazabilidad e informacion técnica del mensaje.
+    type: object
+    required:
+    - "_messageId"
+    - "_requestDateTime"
+    - "_applicationId"
+    properties:
+      _messageId:
+        type: "string"
+        example: "c4e6bd04-5149-11e7-b114-b2f933d5fe66"
+      _requestDateTime:
+        type: "string"               
+        format: "date-time"
+        example: "2017-01-24T05:00:00.000Z"
+      _applicationId:         
+        type: "string"
+        example: "acxff62e-6f12-42de-9012-3e7304418abd"
+    additionalProperties: true
+  objectHeader:
+    description: The type and id for each data.
+    type: object
+    required:
+      - type
+      - id
+    properties:
+      type:
+        type: string
+        example: Customer-Corporate
+      id:
+        type: string
+        example: "1"
+    additionalProperties: true
+  topLevelLinks:
+    description: 'Objeto que contiene los enlaces relacionados al mensaje de respuesta, puede contener los enlaces para realizar una paginación.'
+    type: object
+    allOf:
+      - $ref: '#/definitions/links'
+  links:
+    description: A resource object **MAY** contain references to other resource objects
+    type: object
+    properties:
+      self:
+        description: 'A self member, whose value is a URL for the relationship data'
+        type: string
+        format: uri
+        example: '/v1/bian-path/example'
+    additionalProperties: false
+  failure:
+    type: object
+    description: Mensaje de respuesta cuando ocurre un error.
+    required:
+      - meta
+      - errors
+    properties:
+      meta:
+        $ref: '#/definitions/meta'
+      status:
+        type: number
+        description: 'Codigo de estado HTTP (status code) asociado al mensaje de error de la respuesta del llamado a la API.'
+        example: 404
+      title:
+        type: string
+        description: 'Titulo asociado al codigo de estado HTTP (status code) asociado al mensaje de error de la respuesta del llamado a la API.'
+        example: Not Found
+      errors:
+        type: array
+        description: 'Lista de errores detectados'
+        uniqueItems: true
+        items:
+          $ref: '#/definitions/error'
+  error:
+    type: object
+    required:
+      - code
+      - detail
+    properties:
+      code:
+        description: 'An application-specific error code, expressed as a string value.'
+        type: string
+        example: BP404
+      detail:
+        description: A human-readable explanation specific to this occurrence of the problem.
+        type: string
+        example: Requested resource could not be found
+    additionalProperties: true
+schemes:
+  - https 
+consumes:
+  - application/json
+  - application/vnd.bancolombia.v4+json
+host: $(catalog.host) 
+produces:
+  - application/vnd.bancolombia.v4+json 
+securityDefinitions:
+  clientSecret:
+    type: apiKey 
+    description: '' 
+    in: header 
+    name: X-IBM-Client-Secret 
+  clientId:
+    type: apiKey 
+    in: header 
+    name: X-IBM-Client-Id 
+security:
+  - {} 
+tags:
+  - name: Loan - Transactions
+    description: Esta API cuenta con capacidades que permiten la consulta general de transacciones realizadas a un crédito desembolsado así como la consulta detallada de una transacción específica.
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  assembly:
+    execute:
+        - invoke:
+          target-url: $(target-url)$(request.path)
+  phase: specified
+  extensions:
+    API-Authors: 1.0.0
+    API-Protocol: 1.0.0
+  properties:
+    endpoint:
+      value: ''
+      description: ''
+      encoded: false
+    profiletls:
+      value: ''
+      description: ''
+      encoded: false
+    catalogName:
+      value: ''
+      description: ''
+      encoded: false
+  catalogs:
+    Development:
+      properties:
+        systemId: ''
+        catalogName: development
+        profiletls: apic-dev-tls-profile
+        endpoint: 'https://esbdev.bancolombia.corp:3300/ESB/SOAP/Default'
+    Production:
+      properties:
+        catalogName: production
+        profiletls: apic-prd-tls-profile
+        endpoint: 'https://esbpro.bancolombia.corp:3300/ESB/SOAP/Default'
+    Testing:
+      properties:
+        catalogName: testing
+        profiletls: apic-qa-tls-profile
+        endpoint: 'https://esbqa.bancolombia.corp:3300/ESB/SOAP/Default'
+x-API-Authors:
+  Design:
+    name: 'Designer Name'
+    email: designermail@bancolombia.com.co
+  Development:
+    name: ''
+    email: ''
+  Review:
+    name: ''
+    email: ''
+x-API-Protocol:
+  Protocols: HTTPS

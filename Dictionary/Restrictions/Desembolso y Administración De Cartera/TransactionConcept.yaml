@@ -1,0 +1,13 @@
+transactionConcept: #Se tenía "transactionDetails"
+    type: object
+    required:
+    - code
+    - description
+    - amount
+    properties:
+      code:
+        $ref: "../../Desembolso y Administración De Cartera/TransactionConcept.yaml#/transactionConcept/properties/code"
+      description:
+        $ref: "../../Desembolso y Administración De Cartera/TransactionConcept.yaml#/transactionConcept/properties/description"
+      amount:
+        $ref: "../../Desembolso y Administración De Cartera/TransactionConcept.yaml#/transactionConcept/properties/amount"

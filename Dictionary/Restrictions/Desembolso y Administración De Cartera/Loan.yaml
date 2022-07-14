@@ -1,0 +1,11 @@
+loanId:
+    type: object
+    required:
+    - id
+    - rediscountType
+    properties:
+      id:
+        description: "In-restriction desc."
+        $ref: "../../Desembolso y Administración De Cartera/Loan.yaml#/loan/properties/id"
+      rediscountType:
+        $ref: "../../Desembolso y Administración De Cartera/Loan.yaml#/loan/properties/rediscountType"

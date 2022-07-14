@@ -1,0 +1,76 @@
+  transaction:
+    type: object
+    properties:
+      id:
+        type: string
+        maxLength: 9
+        example: '4321'
+        description: Identificador de la transacción 
+      status:
+        type: string
+        maxLength: 1
+        example: 'A'
+        description: Código del estado de la transacción.
+      type:
+        type: string
+        maxLength: 1
+        example: 'D'
+        description: Indicador de transacciión de naturaleza débito o crédito.
+      code:
+        type: string
+        maxLength: 5
+        example: '3007'
+        description: Código del tipo de transacción.
+      description:
+        type: string
+        maxLength: 30
+        example: 'ABONOS A PRESTAMOS'
+        description: Descripción del proceso que realiza la transacción. 
+      requestDate:
+        type: string
+        format: date
+        maxLength: 10
+        example: '2021-01-01'
+        description: Fecha en que se solicitó la transacción.
+      effectiveDate:
+        type: string
+        format: date
+        maxLength: 10
+        example: '2021-01-01'
+        description: Fecha en la que se realizó la aplicación de la transacción.
+      relatedBillDate:
+        type: string
+        format: date
+        maxLength: 10
+        example: '2021-01-01'
+        description: Fecha de la factura que se afecta producto de la transacción.
+      amount:
+        type: number
+        maxLength: 15
+        example: '150000'
+        description: Valor global de la transacción
+      currency:
+        type: string
+        maxLength: 3
+        example: 'COP'
+        description: Código de moneda en que se efectuó la transacción.
+      localCurrencyAmount:
+        type: number
+        maxLength: 15
+        example: '150000'
+        description: Valor de la transacción convertido en moneda local.
+      localCurrencyExchangeRate:
+        type: number
+        maxLength: 12
+        example: '1'
+        description: Tasa de cambio usada para conversión a moneda local.
+      originBranch:
+        type: string
+        maxLength: 5
+        example: '00000'
+        description: Código de la sucursal origen de la transacción.
+      origin:
+        type: string
+        maxLength: 3
+        example: 'SVP'
+        description: Canal desde donde se originó la transacción.

@@ -1,0 +1,222 @@
+loan:
+    type: object
+    properties:
+      id:
+        type: number
+        maxLength: 11
+        example: '98765682345'
+        description: Identificador del préstamo.
+      rediscountType:
+        type: string
+        maxLength: 1
+        example: '0'
+        description: Indicador de redescuento para la obligación.
+      # El deber ser es "rediscountType", se aclaró que no es un campo "binario".
+      isRediscount:
+        type: boolean
+        example: true
+        description: Indicador de redescuento para la obligación.
+      status:
+        type: string
+        maxLength: 1
+        example: '1'
+        description: Código del estado del préstamo.
+      creditPlan:
+        type: string
+        maxLength: 3
+        example: 'P12'
+        description: Código del plan de crédito.
+      loanTypeCode:
+        type: string
+        maxLength: 1
+        example: '2'
+        description: Código del tipo de préstamo. 
+      initialCapital:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Valor de capital que se adeuda al momento del desembolso.
+      totalBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Suma de todos los conceptos que componen la deuda total del préstamo.
+      principalBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Saldo capital total.
+      currentPrincipalBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Saldo vigente de capital, resultante de restar  el saldo vencido del saldo total de capital del crédito.
+      outstandingBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Suma de todos los valores pendientes por pagar para que la obligación quede al día.
+      outstandingPrincipalBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Porción de capital vencido de acuerdo con las facturas pendientes por pagar.
+      outstandingInterestBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Intereses vencidos de acuerdo con las facturas pendientes por pagar.
+      interestBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Intereses corrientes causados al día inmediatamente anterior a la fecha actual, es decir, la causación se realiza día vencido.
+      arrearsInterestBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Saldo interes en mora causados para créditos que se encuentran en estado "suspensión".
+      arrearsInterestSuspensionBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Cargos que han sido causados en el préstamo después de 31 días de mora.
+      interestSuspensionBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Saldo interes corrientes para créditos que se encuentran en estado "suspensión".
+      lifeInsuranceBalance:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Saldo causado del seguro de vida.
+      disbursementDate:
+        type: string
+        maxLength: 10
+        example: ''
+        description: Fecha del desembolso del crédito
+      expirationDate:
+        type: string
+        maxLength: 10
+        example: ''
+        description: Fecha en que finaliza la obligación.
+      nextPaymentDate:
+        type: string
+        maxLength: 10
+        example: ''
+        description: Fecha en que debe realizarse el próximo pago.
+      paymentDay:
+        type: number
+        maxLength: 2
+        example: ''
+        description: Día del mes en  en que deben realizarse los pagos.
+      term:
+        type: number
+        maxLength: 5
+        example: ''
+        description: Duración o plazo del crédito.
+      termUnits:
+        type: string
+        maxLength: 1
+        example: ''
+        description: Unidades de la duración del préstamo.
+      regularInstallment:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Valor de la cuota  regular que se debe pagar a la olbigación.
+      fixedInstallment:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Valor de la cuota fija que se debe pagar a la olbigación.
+      currency:
+        type: string
+        maxLength: 3
+        example: 'COP'
+        description: Moneda definida para el préstamo.
+      annualNominalInterestRate:
+        type: number
+        maxLength: 7
+        example: ''
+        description: Tasa de interés expresada en términos nominales anuales para el período.
+      initialInterestRate:
+        type: number
+        maxLength: 7
+        example: ''
+        description: Tasa de interés con la que se desembolsó el crédito
+      interestRateType:
+        type: string
+        maxLength: 3
+        example: ''
+        description: Indica si el crédito maneja tasa de interés fija o esta ligado a un índice de tasa variable.
+      # Debe corregirse por "basisPoints"
+      basicPoints:
+        type: number
+        maxLength: 8
+        example: ''
+        description: Puntos adicionales sobre el índice de tasa variable para calcular la tasa de interés total del crédito (spread).
+      daysInArrears:
+        type: number
+        maxLength: 5
+        example: ''
+        description: Número de días que tiene el crédito vencido.
+      arrearsBeginningDate:
+        type: string
+        maxLength: 10
+        example: ''
+        description: Fecha desde que inició el estado de mora o está vencido el crédito.
+      lifeInsuranceArrerasInterest:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Valor de los intereses de mora causados sobre el saldo de seguro de vida pendientes por pagar.
+      originBranch:
+        type: string
+        maxLength: 5
+        example: ''
+        description: Código de la oficina origen donde se originó el crédito.
+      # Debe corregirse por "agreementId"
+      businessAgreementCode:
+        type: string
+        maxLength: 5
+        example: ''
+        description: Código del convenio empresarial de libranza por medio cual el titular del crédito accedió a los recursos.
+      #payments:  Se usa en la consulta detallada de préstamos como agrupador lógico, pero se trata de un atributo del préstamo
+        #type: object
+        #properties:
+      irregularPayments:
+        type: boolean
+        example: true
+        description: Indica si se manejan pagos irregulares. 
+      paymentFrequency:
+        type: number
+        maxLength: 5
+        example: 1
+        description: Duración del periodo de pago.
+      paymentFrequencyUnits:
+        type: string
+        maxLength: 1
+        example: 'M'
+        description: Unidades en que está medido el periodo de pago.
+      lastPaymentDate:
+        type: string
+        maxLength: 10
+        example: '2021-07-27'
+        description: Fecha efectiva en la que se realizó el último pago al crédito.
+      numberOfPayments:
+        type: number
+        maxLength: 3
+        example: 7
+        description: Número de pagos realizados a la olbigación.
+      duePayments:
+        type: number
+        maxLength: 5
+        example: 0
+        description: Número de pagos vencidos.
+      nextPaymentProjectedDate:
+        type: string
+        maxLength: 10
+        example: '2021-08-27'
+        description: Fecha proyectada en la cual se vencerá el próximo pago. Siendo éste un próximo pago regular, irregular o de excepción para el cual el  sistema creará un registro de facturación.   

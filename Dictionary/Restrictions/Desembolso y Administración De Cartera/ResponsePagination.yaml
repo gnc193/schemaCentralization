@@ -1,0 +1,13 @@
+responsePagination:
+    type: object
+    required:
+    - pageSize
+    - totalRecords
+    - additionalRecords
+    properties:
+      pageSize:
+        $ref: "../../Desembolso y Administración De Cartera/Pagination.yaml#/pagination/properties/pageSize"
+      totalRecords:
+        $ref: "../../Desembolso y Administración De Cartera/Pagination.yaml#/pagination/properties/totalRecords"
+      additionalRecords:
+        $ref: "../../Desembolso y Administración De Cartera/Pagination.yaml#/pagination/properties/additionalRecords"

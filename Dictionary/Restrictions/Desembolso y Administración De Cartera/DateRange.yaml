@@ -1,0 +1,12 @@
+dateRange:
+    type: object
+    required:
+    - startDate
+    - endDate
+    properties:
+      startDate:
+        $ref: "../../Desembolso y Administración De Cartera/DateRange.yaml#/dateRange/properties/startDate"
+      endDate:
+        $ref: "../../Desembolso y Administración De Cartera/DateRange.yaml#/dateRange/properties/endDate"
+      startDate1:
+        type: string

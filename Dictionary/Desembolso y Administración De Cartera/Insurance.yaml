@@ -1,0 +1,33 @@
+insurance:
+    type: object
+    properties:
+      type:
+        type: string
+        maxLength: 2
+        example: 'SV'
+        description: Codigo del tipo de seguro asociado a la obligación.
+      rate:
+        type: number
+        maxLength: 7
+        example: ''
+        description: Porcentaje del monto desembolsado a cobrar por concepto del seguro indicado. 
+      additionalRate:
+        type: number
+        maxLength: 7
+        example: ''
+        description: Porcentaje adicional a cobrar por concepto de extra prima. Aplica para seguro de vida y vida más. 
+      calculationMethod:
+        type: string
+        maxLength: 1
+        example: '1'
+        description: Código del método de cálculo a usar para el seguro indicado.
+      calculationBase:
+        type: string
+        maxLength: 1
+        example: 'A'
+        description: Indica cómo se calcula el seguro indicado. No aplica para seguros con monto fijo, por ejemplo; seguro vehículo y desempleo.
+      fixedAmount:
+        type: number
+        maxLength: 15
+        example: ''
+        description: Cargo fijo a cobrar en cada cuota para el tipo seguro indicado.  
